@@ -25,8 +25,8 @@ Usage
 ```bash
   ansible-playbook -vi 192.168.1.95, -u abis --ask-become-pass deploy_task.yaml
    ```
-exmaple:
-  ansible-playbook -i <VM_IP>, -u <username> --ask-become-pass deploy_task.yaml   
+Exmaple:
+  ansible-playbook -i 'vm_IP', -u 'userName' --ask-become-pass deploy_task.yaml   
 
 4. SSH into your virtual machine:
 ```bash
