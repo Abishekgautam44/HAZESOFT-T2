@@ -1,0 +1,30 @@
+---
+- name: Deploy HAZESOFT-T1
+  hosts: 192.168.1.95
+  become: yes
+  become_user: root
+  remote_user: abis
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - nginx
+          - git
+
+    - name: Clone the given repository
+      git:
+        repo: https://github.com/Abishekgautam44/HAZESOFT-T1.git
+        dest: /usr/share/nginx/html/site
+        force: yes
+
+    - name: Build and Start the Container
+      shell: |
+        docker-compose up -d
+      args:
+        chdir: /usr/share/nginx/html/site/
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
